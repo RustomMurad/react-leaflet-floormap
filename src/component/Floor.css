@@ -1,7 +1,7 @@
 /* init map size */
 .leaflet-container {
-  width: 900px;
-  height: 400px;
+  width: 1620;
+  height: 970px;
   margin: 0 auto 10px auto;
   border: 1px solid #ccc;
   background: #252a2e;

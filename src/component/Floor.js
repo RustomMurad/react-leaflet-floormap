@@ -5,8 +5,10 @@ import { Map, ImageOverlay, Marker, Popup } from 'react-leaflet'
 import Control from 'react-leaflet-control';
 import util from '../util/date.js'
 import camera from '../image/icon/camera.png'
-import f1 from '../image/floormap/1f.png'
-import b1 from '../image/floormap/b1.png'
+import sfof1 from '../image/floormap/SFO_F01.jpg'
+import sfof2 from '../image/floormap/SFO_F02.jpg'
+import sfof3 from '../image/floormap/SFO_F03.jpg'
+
 
 /* robinpowered */
 class Floor extends Component {
@@ -26,18 +28,23 @@ class Floor extends Component {
         this.state = {
             currentZoomLevel: 0,
             bounds: iniBounds,
-            targetFloor: 'delta_f1',
+            targetFloor: 'delta_sfof1',
             floors: {
-                delta_f1: {
-                    name: 'F1',
-                    image: f1,
+                delta_sfof1: {
+                    name: "Floor 01",
+                    image: sfof1,
                     markers: []
                 },
-                delta_b1: {
-                    name: 'B1',
-                    image: b1,
+                delta_sfof2: {
+                    name: "Floor 02",
+                    image: sfof2,
                     markers: []
-                }
+                },
+                delta_sfof3: {
+                    name: "Floor 03",
+                    image: sfof3,
+                    markers: []
+                },
             }
         };
     }
@@ -55,8 +62,8 @@ class Floor extends Component {
             //this.handleChangeFloor();
         });
 
-        const w = 1280 * 2,
-            h = 806 * 2;
+        const w = 2700 * 2,
+            h = 1800 * 2;
 
         const southWest = map.unproject([0, h], map.getMaxZoom() - 1);
         const northEast = map.unproject([w, 0], map.getMaxZoom() - 1);
@@ -104,6 +111,7 @@ class Floor extends Component {
             if (m.id === e.target.options.id) {
                 m.lat = lat
                 m.lng = lng
+                console.log('lat: ' + m.lat + ' lng: ' + m.lng);
             }
             return m;
         })
@@ -150,9 +158,10 @@ class Floor extends Component {
                     </ImageOverlay>
 
                     <Control position="topright">
-                        <div style={{ backgroundColor: 'black', padding: '5px', }}>
-                            <button onClick={this.handleChangeFloor.bind(this)} data-floor="delta_f1">F1</button>
-                            <button onClick={this.handleChangeFloor.bind(this)} data-floor="delta_b1">B1</button>
+                        <div style={{ backgroundColor: 'blue', padding: '5px', }}>
+                            <button onClick={this.handleChangeFloor.bind(this)} data-floor="delta_sfof1">Floor 01</button>
+                            <button onClick={this.handleChangeFloor.bind(this)} data-floor="delta_sfof2">Floor 02</button>
+                            <button onClick={this.handleChangeFloor.bind(this)} data-floor="delta_sfof3">Floor 03</button>
                         </div>
                     </Control>
 
