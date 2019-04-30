@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-import { Map, ImageOverlay, Marker, Popup } from 'react-leaflet'
+import { Map, ImageOverlay, Marker, Popup, Tooltip } from 'react-leaflet'
 import Control from 'react-leaflet-control';
 import util from '../util/date.js'
 import camera from '../image/icon/camera.png'
@@ -10,8 +10,11 @@ import sfof2 from '../image/floormap/SFO_F02.jpg'
 import sfof3 from '../image/floormap/SFO_F03.jpg'
 
 
+
 /* robinpowered */
 class Floor extends Component {
+
+
 
     customPin = L.divIcon({
         className: 'location-pin',
@@ -33,17 +36,170 @@ class Floor extends Component {
                 delta_sfof1: {
                     name: "Floor 01",
                     image: sfof1,
-                    markers: []
+                    markers: [
+                        {
+                            id: 101,
+                            name: "Potrero Hill",
+                            floor: 1,
+                            lat: -67,
+                            lng: 357
+                        },
+                        {
+                            id: 102,
+                            name: "Dogpatch",
+                            floor: 1,
+                            lat: -155,
+                            lng: 503
+                        },
+                        {
+                            id: 103,
+                            name: "The Castro",
+                            floor: 1,
+                            lat: -44,
+                            lng: 637
+                        },
+                        {
+                            id: 104,
+                            name: "Noe Valley",
+                            floor: 1,
+                            lat: -97,
+                            lng: 637
+                        },
+                        {
+                            id: 105,
+                            name: "Mission",
+                            floor: 1,
+                            lat: -243,
+                            lng: 629
+                        },
+                        {
+                            id: 106,
+                            name: "SoMa",
+                            floor: 1,
+                            lat: -385,
+                            lng: 516
+                        }
+                    ]
                 },
                 delta_sfof2: {
                     name: "Floor 02",
                     image: sfof2,
-                    markers: []
+                    markers: [{
+                        id: 201,
+                        name: "Russian Hill",
+                        floor: 2,
+                        lat: -39,
+                        lng: 75
+                    },
+                    {
+                        id: 202,
+                        name: "Fisherman's Wharf",
+                        floor: 2,
+                        lat: -80,
+                        lng: 75
+                    },
+                    {
+                        id: 203,
+                        name: "Marina",
+                        floor: 2,
+                        lat: -40,
+                        lng: 265
+                    },
+                    {
+                        id: 204,
+                        name: "Cow Hollow",
+                        floor: 2,
+                        lat: -75,
+                        lng: 250
+                    },
+                    {
+                        id: 205,
+                        name: "Richmond",
+                        floor: 2,
+                        lat: -54,
+                        lng: 377
+                    },
+                    {
+                        id: 206,
+                        name: "Financial District",
+                        floor: 2,
+                        lat: -44,
+                        lng: 632
+                    },
+                    {
+                        id: 207,
+                        name: "North Beach",
+                        floor: 2,
+                        lat: -249,
+                        lng: 633
+                    },
+                    {
+                        id: 208,
+                        name: "Pacific Heights",
+                        floor: 2,
+                        lat: -405,
+                        lng: 634
+                    },
+                    {
+                        id: 209,
+                        name: "Union Square",
+                        floor: 2,
+                        lat: -415,
+                        lng: 400
+                    },
+                    {
+                        id: 210,
+                        name: "Hayes Valley",
+                        floor: 2,
+                        lat: -380,
+                        lng: 280
+                    },
+                    {
+                        id: 211,
+                        name: "Tenderloin",
+                        floor: 2,
+                        lat: -297,
+                        lng: 175
+                    },
+                    {
+                        id: 212,
+                        name: "Nob Hill",
+                        floor: 2,
+                        lat: -415,
+                        lng: 45
+                    },
+                    {
+                        id: 213,
+                        name: "Telegraph Hill",
+                        floor: 2,
+                        lat: -380,
+                        lng: 1
+                    }]
                 },
                 delta_sfof3: {
                     name: "Floor 03",
                     image: sfof3,
-                    markers: []
+                    markers: [{
+                        id: 301,
+                        name: "Twin Peaks",
+                        floor: 33,
+                        lat: -65,
+                        lng: 210
+                    },
+                    {
+                        id: 302,
+                        name: "Haight-Ashbury",
+                        floor: 3,
+                        lat: -405,
+                        lng: 125
+                    },
+                    {
+                        id: 303,
+                        name: "Cole Valley",
+                        floor: 3,
+                        lat: -405,
+                        lng: 70
+                    }]
                 },
             }
         };
@@ -141,16 +297,13 @@ class Floor extends Component {
                         bounds={this.state.bounds} >
 
                         {this.state.floors[this.state.targetFloor].markers.map(m =>
-                            <Marker
-                                key={m.id}
-                                id={m.id}
-                                draggable={true}
-                                onDragend={this.updateMarkerPosition.bind(this)}
-                                position={[m.lat, m.lng]}
-                                icon={this.customPin}>
-                                <Popup minWidth={90}>
-                                    <span> Lat:{m.lat}, Lng:{m.lng} </span>
+                            <Marker position={[m.lat, m.lng]}>
+                                <Popup>
+                                    <span>{m.name}</span>
                                 </Popup>
+                                <Tooltip direction='auto' offset={[55, 20]} opacity={0.9} permanent className='labelstyle'>
+                                    <span style={{ color: 'red', fontWeight: 'bold', fontSize: '40' }}>{m.name}</span>
+                                </Tooltip>
                             </Marker>
 
                         )}

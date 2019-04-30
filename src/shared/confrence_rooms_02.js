@@ -1,47 +1,5 @@
 export const CONFROOMS = [
     {
-        id: 101,
-        name: "Potrero Hill",
-        floor: 1,
-        lat: -67,
-        lng: 357
-    },
-    {
-        id: 102,
-        name: "Dogpatch",
-        floor: 1,
-        lat: -155,
-        lng: 503
-    },
-    {
-        id: 103,
-        name: "The Castro",
-        floor: 1,
-        lat: -44,
-        lng: 637
-    },
-    {
-        id: 104,
-        name: "Noe Valley",
-        floor: 1,
-        lat: -97,
-        lng: 637
-    },
-    {
-        id: 105,
-        name: "Mission",
-        floor: 1,
-        lat: -243,
-        lng: 629
-    },
-    {
-        id: 106,
-        name: "SoMa",
-        floor: 1,
-        lat: -385,
-        lng: 516
-    },
-    {
         id: 201,
         name: "Russian Hill",
         floor: 2,
@@ -131,26 +89,5 @@ export const CONFROOMS = [
         floor: 2,
         lat: -405,
         lng: 42
-    },
-    {
-        id: 301,
-        name: "Twin Peaks",
-        floor: 33,
-        lat: -55,
-        lng: 272
-    },
-    {
-        id: 302,
-        name: "Haight-Ashbury",
-        floor: 3,
-        lat: -405,
-        lng: 185
-    },
-    {
-        id: 303,
-        name: "Cole Valley",
-        floor: 3,
-        lat: -405,
-        lng: 135
     }
 ];
